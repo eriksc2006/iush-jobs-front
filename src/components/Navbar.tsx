@@ -12,6 +12,7 @@ const Navbar = () => {
           <Link to="/homepage" className="text-white hover:text-indigo-200">Inicio</Link>
           <Link to="/about" className="text-white hover:text-indigo-200">Sobre Nosotros</Link>
           <Link to="/contact" className="text-white hover:text-indigo-200">Contacto</Link>
+          <Link to="/signin" className="text-white hover:text-indigo-200">Cerrar sesión</Link>
         </div>
         <div className="md:hidden">
           <button className="text-white" onClick={() => document.getElementById('hidden_navbar')?.classList.toggle('hidden')}>
