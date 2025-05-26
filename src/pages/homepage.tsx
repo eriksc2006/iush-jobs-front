@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -40,20 +41,23 @@ const Homepage = () => {
           Encuentra oportunidades laborales o realiza trueques de habilidades con estudiantes y egresados.
         </p>
 
-        <div className="flex flex-wrap gap-3 mb-6 justify-center sm:justify-start">
-          {carreras.map((carrera) => (
-            <button
-              key={carrera}
-              onClick={() => setSelectedCareer(carrera)}
-              className={`px-4 py-2 rounded-md font-semibold text-lg transition duration-300 ease-in-out ${
-                selectedCareer === carrera
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-gray-300 hover:bg-indigo-300 text-gray-800'
-              }`}
-            >
-              {carrera}
-            </button>
-          ))}
+        {/* Lista desplegable para seleccionar carrera */}
+        <div className="mb-6">
+          <label htmlFor="carrera-select" className="block text-lg font-semibold text-gray-700 mb-2">
+            Selecciona tu carrera:
+          </label>
+          <select
+            id="carrera-select"
+            value={selectedCareer}
+            onChange={(e) => setSelectedCareer(e.target.value as Carrera)}
+            className="w-full max-w-md px-4 py-3 text-lg border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+          >
+            {carreras.map((carrera) => (
+              <option key={carrera} value={carrera}>
+                {carrera}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
