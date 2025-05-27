@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api'; 
 import Swal from 'sweetalert2';
-
+import logoIush from '../assets/IUSH.jpg';
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ export default function Signin() {
         <div className='absolute top-10 left-10'>
           <img 
             className='h-16'
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Logo_IUSH.jpg/1200px-Logo_IUSH.jpg" 
+            src={logoIush}
             alt="IUSH Logo" 
           />
         </div>
