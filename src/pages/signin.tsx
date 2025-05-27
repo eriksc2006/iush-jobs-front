@@ -1,13 +1,47 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../services/api'; 
+import Swal from 'sweetalert2';
+
 
 export default function Signin() {
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const funcAutentication = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Aquí luego pondrás la lógica con el backend
-    navigate('/homepage');
+    const target = e.target as typeof e.target & {
+      email: { value: string };
+      password: { value: string };
+    };
+    
+    const email = target.email.value.trim();
+    const password = target.password.value.trim();
+
+    if (!email || !password) {
+      alert('Por favor, complete todos los campos');
+      return;
+    }
+
+    try {
+      const response = await api.post('/auth/login', { email, password });
+      if (response.status === 200) {
+        // Aquí puedes manejar la respuesta del backend, como guardar el token
+        console.log('Login successful:', response.data);
+        navigate('/homepage');
+      }
+    } catch (error) {
+      console.error('Error durante el login:', error);
+      Swal.fire({
+      title: "Credenciales Incorrectas",
+      text: "Verifica tu correo y/o contraseña.",
+      icon: "error",
+      imageUrl: "https://bit.ly/43gT3l7",
+      imageWidth: 200,
+      imageHeight: 200,
+      imageAlt: "Custom image"
+});
+
+    }
   };
   
   const navigateToForgotPassword = () => {
@@ -43,7 +77,7 @@ export default function Signin() {
               <p className="text-gray-400 text-lg">Comienza nuestra aventura juntos</p>
             </div>
 
-            <form className="space-y-4" onSubmit={handleLogin}>
+            <form className="space-y-4" onSubmit={funcAutentication}>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-1">
                   Correo
