@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api'; 
 import Swal from 'sweetalert2';
-import logoIush from '../assets/IUSH.jpg';
+import logoIush from '../assets/logoIUSH.jpg';
 
 export default function Signin() {
   const navigate = useNavigate();
